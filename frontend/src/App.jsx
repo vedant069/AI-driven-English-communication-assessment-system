@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
 import Footer from './components/layout/Footer';
+import Dashboard from './components/pages/Dashboard';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Navbar />
         <main className="flex-grow container mx-auto px-4 py-8">
           <Routes>
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route path="/" element={<Dashboard />} />
           </Routes>
         </main>
         <Footer />

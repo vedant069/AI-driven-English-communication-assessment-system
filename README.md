@@ -18,3 +18,74 @@ pip install -r requirements.txt
 
 
 come to home dir and continue with "npm run dev"
+
+
+
+
+
+
+SRS:
+
+
+1. firbase login 
+2. fastapi
+
+
+
+
+-------------------------------------------------------------
+home page:
+
+home 
+assesment 
+
+
+footer
+
+ -------------------------------------------------------------
+
+assesment page:
+
+
+ -------------------------------------------------------------
+side bar:
+
+
+overview
+
+report
+
+profile
+
+logout
+
+
+
+
+
+
+
+
+
+day 1:
+
+
+
+2. dashboard : harsh
+3. backend : (auth) saksham
+3. login page
+4. firebase
+
+
+5. user input: (STT, grammer and pronounciation, pace, and all )
+
+
+6. feedback ( graphs, tests, ui)
+
+
+
+
+
+
+
+

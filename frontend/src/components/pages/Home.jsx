@@ -4,6 +4,50 @@ import { UserCircle, Video, Brain, FileText, ChevronRight } from 'lucide-react'
 
 function Home() {
   const [isHovered, setIsHovered] = useState(null)
+  const features = [
+    {
+      icon: <Video className="w-10 h-10" />,
+      title: "Video Analysis",
+      description: "Record responses to prompts with real-time feedback",
+      colorClass: "text-brand-blue"
+    },
+    {
+      icon: <Brain className="w-10 h-10" />,
+      title: "AI Assessment",
+      description: "Advanced analysis of grammar, pronunciation & fluency",
+      colorClass: "text-brand-purple"
+    },
+    {
+      icon: <FileText className="w-10 h-10" />,
+      title: "Detailed Reports",
+      description: "Get comprehensive feedback and improvement plans",
+      colorClass: "text-brand-orange"
+    },
+    {
+      icon: <UserCircle className="w-10 h-10" />,
+      title: "Indian Context",
+      description: "Specialized for Indian regional accents",
+      colorClass: "text-brand-yellow"
+    }
+  ]
+  
+  const statistics = [
+    { 
+      value: "70%+", 
+      label: "Accuracy for Indian Accents",
+      style: { color: '#073ca5' } // brand-blue
+    },
+    { 
+      value: "4.8/5", 
+      label: "User Satisfaction",
+      style: { color: '#891a61' } // brand-purple
+    },
+    { 
+      value: "1000+", 
+      label: "Daily Assessments",
+      style: { color: '#ff5b00' } // brand-orange
+    }
+  ]
 
   return (
     <div className="space-y-16 bg-gradient-to-b from-white to-gray-50">
@@ -26,32 +70,7 @@ function Home() {
 
       {/* Features Grid */}
       <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
-        {[
-          {
-            icon: <Video className="w-10 h-10" />,
-            title: "Video Analysis",
-            description: "Record responses to prompts with real-time feedback",
-            color: "brand-blue"
-          },
-          {
-            icon: <Brain className="w-10 h-10" />,
-            title: "AI Assessment",
-            description: "Advanced analysis of grammar, pronunciation & fluency",
-            color: "brand-purple"
-          },
-          {
-            icon: <FileText className="w-10 h-10" />,
-            title: "Detailed Reports",
-            description: "Get comprehensive feedback and improvement plans",
-            color: "brand-orange"
-          },
-          {
-            icon: <UserCircle className="w-10 h-10" />,
-            title: "Indian Context",
-            description: "Specialized for Indian regional accents",
-            color: "brand-yellow"
-          }
-        ].map((feature, index) => (
+        {features.map((feature, index) => (
           <div
             key={index}
             className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 
@@ -60,7 +79,7 @@ function Home() {
             onMouseLeave={() => setIsHovered(null)}
           >
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className={`text-${feature.color} transition-colors duration-300`}>
+              <div className={feature.colorClass}>
                 {feature.icon}
               </div>
               <h3 className="text-2xl font-semibold">{feature.title}</h3>
@@ -73,13 +92,11 @@ function Home() {
       {/* Statistics */}
       <section className="bg-gradient-to-r from-brand-blue/10 to-brand-purple/10 py-16 rounded-2xl">
         <div className="grid md:grid-cols-3 gap-12 text-center">
-          {[
-            { value: "70%+", label: "Accuracy for Indian Accents", color: "brand-blue" },
-            { value: "4.8/5", label: "User Satisfaction", color: "brand-purple" },
-            { value: "1000+", label: "Daily Assessments", color: "brand-orange" }
-          ].map((stat, index) => (
+          {statistics.map((stat, index) => (
             <div key={index} className="transform hover:scale-105 transition-transform duration-300">
-              <div className={`text-4xl font-bold text-${stat.color} mb-2`}>{stat.value}</div>
+              <div className="text-4xl font-bold mb-2" style={stat.style}>
+                {stat.value}
+              </div>
               <div className="text-gray-700 text-lg">{stat.label}</div>
             </div>
           ))}
