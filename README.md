@@ -2,10 +2,12 @@ steps:
 
 check .env files
 
-in the root dir, type
->>> npm run dev
+for starting from start :
+npm i (in root folder)
 
-try to understand the code... 
+and then in the root dir: 
+npm run dev
+
 
 these commands for fastAPi configuration
 
