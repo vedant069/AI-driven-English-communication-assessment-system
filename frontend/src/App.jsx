@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import Home from './components/pages/Home';
-import Footer from './components/layout/Footer';
-import Dashboard from './components/pages/Dashboard';
+import Navbar from './layout/Navbar';
+import Home from './pages/Home';
+import Footer from './layout/Footer';
+import Dashboard from './pages/Dashboard';
+import GrammarAssessment from './pages/GrammarAssessment';
 
 function App() {
   return (
@@ -12,8 +13,13 @@ function App() {
         <Navbar />
         <main className="flex-grow container mx-auto px-4 py-8">
           <Routes>
+
+            {/* SAKSHAM ADD ROUTING FOR THIS PAGES  */}
+
+
             {/* <Route path="/" element={<Home />} /> */}
-            <Route path="/" element={<Dashboard />} />
+            {/* <Route path="/" element={<Dashboard />} /> */}
+            <Route path="/" element={<GrammarAssessment />} />
           </Routes>
         </main>
         <Footer />
