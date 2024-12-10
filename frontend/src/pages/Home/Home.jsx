@@ -1,7 +1,6 @@
 // frontend/src/components/pages/Home.jsx
 import React, { useState } from 'react'
 import { UserCircle, Video, Brain, FileText, ChevronRight } from 'lucide-react'
-import Footer from "../../components/Footer";
 
 function Home() {
   const [isHovered, setIsHovered] = useState(null)
@@ -51,7 +50,6 @@ function Home() {
   ]
 
   return (
-    <div>
     <div className="space-y-16 bg-gradient-to-b from-white to-gray-50">
       {/* Hero Section */}
       <section className="text-center space-y-8 py-16 relative overflow-hidden">
@@ -121,11 +119,6 @@ function Home() {
         </div>
       </section>
     </div>
-      <Footer />
-    </div>
-
-   
-    
   )
 }
 
