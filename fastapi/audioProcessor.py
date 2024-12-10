@@ -1,7 +1,7 @@
 import os
 from groq import Groq
 import logging
-print()
+
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
