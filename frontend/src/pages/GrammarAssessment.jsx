@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Mic, MicOff, ChevronRight, Volume2 } from "lucide-react";
 import ConversationLayout from "../layouts/ConversationLayout";
 import WaveformVisualizer from "../components/WaveformVisualizer";
@@ -6,6 +6,9 @@ import WaveformVisualizer from "../components/WaveformVisualizer";
 function GrammarAssessment() {
   const [isRecording, setIsRecording] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const mediaRecorderRef = useRef(null);
+  const chunksRef = useRef([]);
+  const [audioStream, setAudioStream] = useState(null);
 
   const questions = [
     "Describe your typical daily routine.",
@@ -14,9 +17,64 @@ function GrammarAssessment() {
     "Tell me about your favorite hobby.",
   ];
 
+  const startRecording = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorderRef.current = new MediaRecorder(stream);
+      setAudioStream(stream);
+      chunksRef.current = [];
+
+      mediaRecorderRef.current.ondataavailable = (event) => {
+        if (event.data.size > 0) {
+          chunksRef.current.push(event.data);
+        }
+      };
+
+      mediaRecorderRef.current.onstop = () => {
+        const audioBlob = new Blob(chunksRef.current, { type: "audio/webm" });
+        sendAudioToServer(audioBlob);
+      };
+
+      mediaRecorderRef.current.start();
+      setIsRecording(true);
+    } catch (err) {
+      console.error("Error accessing microphone:", err);
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorderRef.current && isRecording) {
+      mediaRecorderRef.current.stop();
+      mediaRecorderRef.current.stream
+        .getTracks()
+        .forEach((track) => track.stop());
+      setIsRecording(false);
+    }
+  };
+
+  const sendAudioToServer = async (audioBlob) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", audioBlob, "recording.webm");
+
+      const response = await fetch("http://localhost:8000/process-audio", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log("Server response:", data);
+    } catch (err) {
+      console.error("Error sending audio:", err);
+    }
+  };
+
   const handleRecord = () => {
-    setIsRecording(!isRecording);
-    // Add actual recording logic here
+    if (isRecording) {
+      stopRecording();
+    } else {
+      startRecording();
+    }
   };
 
   const handleNext = () => {
@@ -25,6 +83,7 @@ function GrammarAssessment() {
       setIsRecording(false);
     }
   };
+
   return (
     <ConversationLayout>
       {/* Header with gradient background */}
@@ -90,7 +149,7 @@ function GrammarAssessment() {
 
         {/* Waveform Visualizer */}
         <div className="w-full max-w-md p-4 bg-gray-50 rounded-xl shadow-inner">
-          <WaveformVisualizer isRecording={isRecording} />
+          <WaveformVisualizer isRecording={isRecording} stream={audioStream}/>
         </div>
 
         <span className="text-sm font-medium px-3 py-1 rounded-full bg-gray-100">
