@@ -48,11 +48,11 @@ const WaveformVisualizer = ({ isRecording, stream }) => {
         const highMids = dataArray.slice(20, 40).reduce((a, b) => a + b) / 20;
         const highs = dataArray.slice(40, 60).reduce((a, b) => a + b) / 20;
         
-        const baseAmplitude = HEIGHT / 1.5;
+        const baseAmplitude = HEIGHT / 7;
         const bassAmplitude = (bass * 1.4) / 256 * baseAmplitude;
-        const midsAmplitude = (lowMids * 1.0) / 256 * baseAmplitude;
-        const highMidsAmplitude = (highMids * 0.8) / 256 * baseAmplitude;
-        const highsAmplitude = (highs * 0.6) / 256 * baseAmplitude;
+        const midsAmplitude = (lowMids * 1.3) / 256 * baseAmplitude;
+        const highMidsAmplitude = (highMids * 1.2) / 256 * baseAmplitude;
+        const highsAmplitude = (highs * 1.1) / 256 * baseAmplitude;
 
         const drawWave = (
           offset,
@@ -100,12 +100,10 @@ const WaveformVisualizer = ({ isRecording, stream }) => {
         
         
         // Updated wave calls with alternating directions
-        drawWave(-2, 0.08, 0.003, "255,91,0", "255,150,0", 0.9, bassAmplitude, 1);      // Bass wave
-        drawWave(-1, 0.15, 0.004, "255,110,0", "255,170,0", 0.4, midsAmplitude, -1);    // Mids wave
+        drawWave(-2, 0.08, 0.003, "255,91,0", "255,188,0", 0.9, bassAmplitude, 1);      // Bass wave
+        drawWave(-1, 0.15, 0.004, "204,5,48", "255,91,0", 0.4, midsAmplitude, -1);    // Mids wave
         drawWave(2, 0.18, 0.003, "255,130,0", "255,200,0", 0.3, highMidsAmplitude, 1);  // High-mids wave
         drawWave(0, 0.22, 0.002, "255,160,0", "255,220,0", 0.2, highsAmplitude, -1);    // Highs wave
-        
-
       
         rafId.current = requestAnimationFrame(draw);
       };
