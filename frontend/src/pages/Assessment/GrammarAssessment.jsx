@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Mic, MicOff, ChevronRight, Volume2 } from "lucide-react";
-import ConversationLayout from "../layouts/ConversationLayout";
-import WaveformVisualizer from "../components/WaveformVisualizer";
+import ConversationLayout from "../../layouts/ConversationLayout";
+import WaveformVisualizer from "../../components/WaveformVisualizer";
 
 function GrammarAssessment() {
   const [isRecording, setIsRecording] = useState(false);
