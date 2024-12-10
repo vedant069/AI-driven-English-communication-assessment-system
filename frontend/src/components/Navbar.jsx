@@ -1,15 +1,24 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { Menu, X, User } from 'lucide-react'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleSignUp = () => {
+    navigate("/register");
+  };
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Dashboard', path: '/dashboard' },
-    { name: 'Assessments', path: '/assessments' },
-  ]
+    { name: "Home", path: "/" },
+    { name: "Dashboard", path: "/dashboard" },
+    { name: "Assessments", path: "/assessments" },
+  ];
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
@@ -18,11 +27,7 @@ function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center">
-              <img 
-                src="/images/logo.png"
-                alt="Logo"
-                className="h-24"
-              />
+              <img src="/images/logo.png" alt="Logo" className="h-24" />
             </Link>
           </div>
 
@@ -41,10 +46,16 @@ function Navbar() {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 text-brand-blue hover:text-brand-purple transition-colors duration-200">
+            <button
+              className="px-4 py-2 text-brand-blue hover:text-brand-purple transition-colors duration-200"
+              onClick={handleLogin}
+            >
               Login
             </button>
-            <button className="px-4 py-2 bg-brand-blue text-white rounded-lg hover:bg-brand-purple transition-all duration-200 flex items-center space-x-2">
+            <button
+              className="px-4 py-2 bg-brand-blue text-white rounded-lg hover:bg-brand-purple transition-all duration-200 flex items-center space-x-2"
+              onClick={handleSignUp}
+            >
               <User className="w-4 h-4" />
               <span>Sign Up</span>
             </button>
@@ -80,10 +91,16 @@ function Navbar() {
                 </Link>
               ))}
               <div className="mt-4 space-y-2">
-                <button className="block w-full px-3 py-2 text-center text-brand-blue hover:text-brand-purple">
+                <button
+                  className="block w-full px-3 py-2 text-center text-brand-blue hover:text-brand-purple"
+                  onClick={handleLogin}
+                >
                   Login
                 </button>
-                <button className="block w-full px-3 py-2 text-center bg-brand-blue text-white rounded-lg hover:bg-brand-purple">
+                <button
+                  className="block w-full px-3 py-2 text-center bg-brand-blue text-white rounded-lg hover:bg-brand-purple"
+                  onClick={handleSignUp}
+                >
                   Sign Up
                 </button>
               </div>
@@ -92,7 +109,7 @@ function Navbar() {
         )}
       </div>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

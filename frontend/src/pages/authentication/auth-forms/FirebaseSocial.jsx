@@ -3,14 +3,14 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 
 // assets
-// import { Google, Twitter, Facebook } from "lucide-react";
+import Google from "../../../assets/icons/google.svg";
+import Twitter from "../../../assets/icons/twitter.svg";
+import Facebook from "../../../assets/icons/facebook.svg";
 import { fromPairs } from "lodash";
 
 // ==============================|| FIREBASE - SOCIAL BUTTON ||============================== //
 
 export default function FirebaseSocial() {
-  const downSM = useMediaQuery((theme) => theme.breakpoints.down("sm"));
-
   // @ts-ignore
   const googleHandler = async () => {
     // login || singup
@@ -39,30 +39,21 @@ export default function FirebaseSocial() {
       <Button
         variant="outlined"
         color="secondary"
-        fullWidth={!downSM}
         startIcon={<img src={Google} alt="Google" />}
         onClick={googleHandler}
-      >
-        {!downSM && "Google"}
-      </Button>
+      ></Button>
       <Button
         variant="outlined"
         color="secondary"
-        fullWidth={!downSM}
         startIcon={<img src={Twitter} alt="Twitter" />}
         onClick={twitterHandler}
-      >
-        {!downSM && "Twitter"}
-      </Button>
+      ></Button>
       <Button
         variant="outlined"
         color="secondary"
-        fullWidth={!downSM}
         startIcon={<img src={Facebook} alt="Facebook" />}
         onClick={facebookHandler}
-      >
-        {!downSM && "Facebook"}
-      </Button>
+      ></Button>
     </Stack>
   );
 }
