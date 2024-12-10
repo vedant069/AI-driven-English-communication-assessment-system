@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from routers import users
 from config.database import init_db
 import logging
+import conersa
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,6 +31,7 @@ async def read_root() -> dict:
 @app.post("/process-audio") 
 async def process_audio(file: UploadFile = File(...)):
     contents = await file.read()
+
     logging.info(f"Received file: {file.filename}")
     return {"filename": file.filename, "status": "received"}
 
